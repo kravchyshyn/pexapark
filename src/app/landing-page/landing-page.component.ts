@@ -43,7 +43,7 @@ export class LandingPageComponent implements OnInit {
     });
   }
 
-  submit() {
+  submit(): void {
     if (!this.windForm.valid) {
       return;
     }

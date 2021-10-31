@@ -7,7 +7,11 @@ import { BarChartModel, WindFarmModel } from '../models/wind-farm.model';
 export class WindFarmDataService {
   constructor() {}
 
-  getChartStructure(wfStructure: WindFarmModel) {
+  /**
+   * Prepare data for bar chart
+   * @param wfStructure - wind farm data structure
+   */
+  getChartStructure(wfStructure: WindFarmModel): BarChartModel {
     const chartColors = {
       red: 'rgb(255, 99, 132)',
       blue: 'rgb(54, 162, 235)'
