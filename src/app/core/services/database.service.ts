@@ -21,10 +21,15 @@ export class DatabaseService {
       dateEnd: dateRange.end,
       powerData: []
     }
+
     let date: Date = new Date(dateRange.start);
+    // temp variable used which we used to display not full daily data
+    let dayNumber = 0;
 
     while (date <= new Date(dateRange.end)) {
-      const powerValues: number[] = this.getDayPowerValues(maxCapacity, 24);
+      const count = (dayNumber % 6 === 0 && dayNumber > 0) ? 22 : 24;
+
+      const powerValues: number[] = this.getDayPowerValues(maxCapacity, count);
       const basedOn: number= powerValues.length || 0;
       const totalPower: number = powerValues.reduce((prevValue, currentValue) => prevValue + currentValue)
       const averagePower: number = roundTo(totalPower / basedOn, 2)
@@ -34,6 +39,7 @@ export class DatabaseService {
 
       let newDate = date.setDate(date.getDate() + 1);
       date = new Date(newDate);
+      dayNumber++;
     }
 
     return dataStructure;
@@ -46,6 +52,7 @@ export class DatabaseService {
    */
   getDayPowerValues(maxCapacity = 10, count = 24): number[] {
     let response: number[] = [];
+
 
     for (let i = 0; i < count; i++) {
       const powerValue = roundTo(Math.random() * maxCapacity, 2)

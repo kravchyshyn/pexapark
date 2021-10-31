@@ -28,7 +28,8 @@ export class WindFarmDataService {
 
     wfStructure.powerData.forEach(el => {
       const date: Date = new Date(el.date);
-      const color: string = el.efficiency > 0.5 ? chartColors.blue : chartColors.red;
+      console.log('el.basedOn', el);
+      const color: string = el.basedOn == 24 ? chartColors.blue : chartColors.red;
 
       response.barChartData[0].data.push(el.efficiency);
       (response.barChartData[0].backgroundColor as Array<string>).push(color);
