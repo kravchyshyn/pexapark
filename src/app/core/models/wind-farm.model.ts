@@ -1,5 +1,5 @@
 export interface WindFarmSelectorModel {
-  value: string;
+  value: number;
   title: string;
 }
 

@@ -7,7 +7,7 @@
     <div class="">
       <mat-form-field appearance="fill">
         <mat-label>Wind farm</mat-label>
-        <mat-select formControlName="windFarmName">
+        <mat-select [(value)]="selectedWF" formControlName="windFarmName">
           <mat-option *ngFor="let windFarm of windFarms" [value]="windFarm.value">
             {{windFarm.title}}
           </mat-option>
