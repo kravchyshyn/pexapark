@@ -18,7 +18,7 @@ export class LandingPageComponent implements OnInit {
   windFarms: WindFarmSelectorModel[] = [
     {value: 0, title: 'WF-1', capacity: 10},
     {value: 1, title: 'WF-2', capacity: 17},
-    {value: 2, title: 'WF-3', capacity: 15}
+    {value: 2, title: 'WF-3', capacity: 22}
   ];
 
   displayedColumns: string[] = ['position', 'date', 'averagePower', 'efficiency'];
