@@ -62,6 +62,7 @@
             <tr
               mat-row
               *matRowDef="let row; columns: displayedColumns;"
+              [ngClass]="{ 'warning': (row.basedOn < 24) }"
             ></tr>
           </table>
         </mat-tab>
