@@ -1,20 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {DatabaseService} from '../core/services/database.service';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Label} from 'ng2-charts';
-
-interface WindFarmSelector {
-  value: string;
-  title: string;
-}
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatabaseService } from '../core/services/database.service';
+import { PeriodicElement, WindFarmModel, WindFarmSelectorModel } from '../core/models/wind-farm.model';
+import { WindFarmDataService } from '../core/services/wind-farm-data.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -24,31 +12,24 @@ export interface PeriodicElement {
 export class LandingPageComponent implements OnInit {
   windForm: FormGroup;
   dateRange: FormGroup;
-  windFarm: any;
+  windFarm: WindFarmModel;
 
-  windFarms: WindFarmSelector[] = [
+  windFarms: WindFarmSelectorModel[] = [
     {value: '0', title: 'WF-1'},
     {value: '1', title: 'WF-2'},
     {value: '2', title: 'WF-3'}
   ];
 
   displayedColumns: string[] = ['position', 'date', 'averagePower', 'efficiency'];
-  clickedRows = new Set<PeriodicElement>();
+  // clickedRows = new Set<PeriodicElement>();
+  chartData: any;
 
-
-  barChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  barChartLabels: Label[];
-  barChartType: ChartType = 'bar';
-  barChartLegend = true;
-  barChartPlugins = [];
-  barChartData: ChartDataSets[];
 
 
   constructor(
-    public db: DatabaseService,
-    private fb: FormBuilder
+    private db: DatabaseService,
+    private fb: FormBuilder,
+    public wfDataService: WindFarmDataService
   ) {
   }
 
@@ -73,31 +54,7 @@ export class LandingPageComponent implements OnInit {
     this.windFarm = this.db.getWFData('WF-1', this.windForm.value.dateRange, capacity);
     console.log('windFarm', this.windFarm)
 
-    const efficiencyArr = []
-    const datesArr = []
-    const backgroundArr = [];
-
-    var chartColors = {
-      red: 'rgb(255, 99, 132)',
-      blue: 'rgb(54, 162, 235)'
-    };
-
-    this.windFarm.powerData.forEach(el => {
-      efficiencyArr.push(el.efficiency)
-
-      const date = new Date(el.date);
-      datesArr.push(date.toISOString().slice(0, 10))
-
-      const color = el.efficiency > 0.5 ? chartColors.blue: chartColors.red;
-      backgroundArr.push(color)
-    })
-
-
-    this.barChartLabels = datesArr;
-    this.barChartData = [{
-        data: efficiencyArr, label: '', backgroundColor: backgroundArr
-      }
-    ];
+    this.chartData = this.wfDataService.getChartStructure(this.windFarm)
 
   }
 }

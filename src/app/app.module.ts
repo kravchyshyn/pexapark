@@ -14,7 +14,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
-import {ChartsModule} from 'ng2-charts';
+import {CoreModule} from './core/core.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {ChartsModule} from 'ng2-charts';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatTableModule,
-    ChartsModule
+    CoreModule,
+    MatTabsModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
