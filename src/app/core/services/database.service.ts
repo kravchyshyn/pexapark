@@ -6,6 +6,12 @@ import {Injectable} from '@angular/core';
 export class DatabaseService {
   constructor() {}
 
+  /**
+   * Get
+   * @param windFarmName
+   * @param dateRange
+   * @param maxCapacity
+   */
   getWFData(windFarmName, dateRange: any, maxCapacity) {
     let dataStructure = {
       name: windFarmName,
@@ -20,9 +26,10 @@ export class DatabaseService {
       const powerValues = this.getDayPowerValues(maxCapacity, 24);
       const basedOn = powerValues.length || 0;
       const totalPower = powerValues.reduce((prevValue, currentValue) => prevValue + currentValue)
-      const averagePower = totalPower / (basedOn * maxCapacity)
+      const averagePower = roundTo(totalPower / basedOn, 2)
+      const efficiency = roundTo(totalPower / (basedOn * maxCapacity), 2);
 
-      dataStructure.powerData.push({date, averagePower, basedOn, powerValues})
+      dataStructure.powerData.push({date, averagePower, basedOn, efficiency, powerValues})
 
       let newDate = date.setDate(date.getDate() + 1);
       date = new Date(newDate);
@@ -49,7 +56,8 @@ export class DatabaseService {
 }
 
 /**
- *
+ * Function helper
+ * Used to round value for specific accuracy
  * @param value - value which is needed to round
  * @param num - number of digits after "."
  */
