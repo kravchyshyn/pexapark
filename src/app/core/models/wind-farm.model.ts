@@ -1,14 +1,11 @@
+import { ChartDataSets } from 'chart.js';
+import { Label } from 'ng2-charts';
+
 export interface WindFarmSelectorModel {
   value: number;
   title: string;
+  capacity: number;
 }
-
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
 
 export interface WindFarmModel {
   name: string;
@@ -16,7 +13,6 @@ export interface WindFarmModel {
   maxCapacity: number;
   dateStart: Date;
   dateEnd: Date;
-
 }
 
 export interface PowerDataModel {
@@ -27,4 +23,7 @@ export interface PowerDataModel {
   powerValues: number[]
 }
 
-
+export interface BarChartModel {
+  barChartLabels: Label[];
+  barChartData: ChartDataSets[];
+}

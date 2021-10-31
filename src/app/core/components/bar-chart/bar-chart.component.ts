@@ -1,21 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import { Component, Input } from '@angular/core';
+import { ChartOptions, ChartType } from 'chart.js';
+import { BarChartModel } from '../../models/wind-farm.model';
 
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.scss']
 })
-export class BarChartComponent implements OnInit {
-
-  @Input() data: any;
+export class BarChartComponent {
+  @Input() data: BarChartModel;
 
   barChartOptions: ChartOptions = {
     responsive: true,
     scales: {
       yAxes: [{
         ticks: {
-          max : 1,
+          max: 1,
           min: 0,
           beginAtZero: true
         }
@@ -23,13 +23,8 @@ export class BarChartComponent implements OnInit {
     }
   };
   barChartType: ChartType = 'bar';
-  barChartLegend = false;
-  barChartPlugins = [];
+  barChartLegend: boolean = false;
 
-  constructor() {}
-
-  ngOnInit(): void {
-    console.log('this.data', this.data);
+  constructor() {
   }
-
 }

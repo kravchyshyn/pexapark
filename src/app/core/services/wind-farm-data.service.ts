@@ -1,25 +1,19 @@
 import { Injectable } from '@angular/core';
-import { WindFarmModel } from '../models/wind-farm.model';
-import { ChartDataSets } from 'chart.js';
-
+import { BarChartModel, WindFarmModel } from '../models/wind-farm.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WindFarmDataService {
-  constructor() {
-
-  }
+  constructor() {}
 
   getChartStructure(wfStructure: WindFarmModel) {
-    var chartColors = {
+    const chartColors = {
       red: 'rgb(255, 99, 132)',
       blue: 'rgb(54, 162, 235)'
     };
 
-    //Label[]
-    // barChartData: ChartDataSets[];
-    let response = {
+    let response: BarChartModel = {
       barChartLabels: [],
       barChartData: [{
         data: [],
@@ -27,32 +21,15 @@ export class WindFarmDataService {
         backgroundColor: []
       }]
     };
-    // const efficiencyArr = []
-    // const datesArr = []
-    // const backgroundArr = [];
 
     wfStructure.powerData.forEach(el => {
-      const date = new Date(el.date);
-      const color = el.efficiency > 0.5 ? chartColors.blue : chartColors.red;
-
-      // efficiencyArr.push(el.efficiency)
+      const date: Date = new Date(el.date);
+      const color: string = el.efficiency > 0.5 ? chartColors.blue : chartColors.red;
 
       response.barChartData[0].data.push(el.efficiency);
-      response.barChartData[0].backgroundColor.push(color);
+      (response.barChartData[0].backgroundColor as Array<string>).push(color);
       response.barChartLabels.push(date.toISOString().slice(0, 10));
-
-      // datesArr.push(date.toISOString().slice(0, 10))
-
-      // backgroundArr.push(color)
     })
-
-    // response.barChartLabels = datesArr;
-    // response.barChartData = [{
-    //   data: efficiencyArr, label: '', backgroundColor: backgroundArr
-    // }
-    // ];
-
-    console.log('response', response);
 
     return response;
   }

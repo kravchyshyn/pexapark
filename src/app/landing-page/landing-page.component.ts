@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DatabaseService } from '../core/services/database.service';
-import { WindFarmModel, WindFarmSelectorModel } from '../core/models/wind-farm.model';
+import { BarChartModel, WindFarmModel, WindFarmSelectorModel } from '../core/models/wind-farm.model';
 import { WindFarmDataService } from '../core/services/wind-farm-data.service';
 
 @Component({
@@ -16,16 +16,13 @@ export class LandingPageComponent implements OnInit {
   selectedWF: string = 'WF-1';
 
   windFarms: WindFarmSelectorModel[] = [
-    {value: 0, title: 'WF-1'},
-    {value: 1, title: 'WF-2'},
-    {value: 2, title: 'WF-3'}
+    {value: 0, title: 'WF-1', capacity: 10},
+    {value: 1, title: 'WF-2', capacity: 17},
+    {value: 2, title: 'WF-3', capacity: 15}
   ];
 
   displayedColumns: string[] = ['position', 'date', 'averagePower', 'efficiency'];
-  // clickedRows = new Set<PeriodicElement>();
-  chartData: any;
-
-
+  chartData: BarChartModel;
 
   constructor(
     private db: DatabaseService,
@@ -51,8 +48,12 @@ export class LandingPageComponent implements OnInit {
       return;
     }
 
-    let capacity: number = 10;
-    this.windFarm = this.db.getWFData(this.windFarms[this.windForm.value.windFarmName], this.windForm.value.dateRange, capacity);
+    this.windFarm = this.db.getWFData(
+      this.windFarms[this.windForm.value.windFarmName].title,
+      this.windForm.value.dateRange,
+      this.windFarms[this.windForm.value.windFarmName].capacity
+    );
+
     this.chartData = this.wfDataService.getChartStructure(this.windFarm)
   }
 }
