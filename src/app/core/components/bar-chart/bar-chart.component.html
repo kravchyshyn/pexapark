@@ -5,6 +5,8 @@
           [labels]="data.barChartLabels"
           [options]="barChartOptions"
           [legend]="barChartLegend"
-          [chartType]="barChartType">
+          [chartType]="barChartType"
+          (chartClick)="onChartClick($event)"
+  >
   </canvas>
 </div>

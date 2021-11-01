@@ -66,12 +66,15 @@
               mat-row
               *matRowDef="let row; columns: displayedColumns;"
               [ngClass]="{ 'warning': (row.basedOn < 24) }"
+              (click)="onTableRowClick(row)"
             ></tr>
           </table>
         </mat-tab>
         <mat-tab label="Visual view">
           <app-bar-chart
-            [data]="chartData">
+            [data]="chartData"
+            (chartClicked)="onClickOnChartRow($event)"
+          >
           </app-bar-chart>
         </mat-tab>
       </mat-tab-group>

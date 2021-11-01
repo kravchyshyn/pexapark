@@ -4,6 +4,8 @@ import { DatabaseService } from '../core/services/database.service';
 import { BarChartModel, WindFarmModel, WindFarmSelectorModel } from '../core/models/wind-farm.model';
 import { WindFarmDataService } from '../core/services/wind-farm-data.service';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { WindFarmInfoDialogComponent } from '../core/components/wind-farm-info-dialog/wind-farm-info-dialog.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -25,13 +27,13 @@ export class LandingPageComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'date', 'averagePower', 'efficiency'];
   chartData: BarChartModel;
-
   wfStructure$: Observable<WindFarmModel>;
 
   constructor(
     private db: DatabaseService,
     private fb: FormBuilder,
-    public wfDataService: WindFarmDataService
+    public wfDataService: WindFarmDataService,
+    public dialog: MatDialog
   ) {
   }
 
@@ -64,5 +66,26 @@ export class LandingPageComponent implements OnInit {
     )
 
     this.chartData = this.wfDataService.getChartStructure(this.windFarm)
+  }
+
+  onClickOnChartRow(event): void {
+    if (event.length > 0) {
+      const index = event[0]._index;
+      const wfPowerData = this.windFarm.powerData[index];
+
+      if (wfPowerData.basedOn < 24) {
+        this.dialog.open(WindFarmInfoDialogComponent, {
+          data: wfPowerData
+        });
+      }
+    }
+  }
+
+  onTableRowClick(powerDataRow): void {
+    if (powerDataRow.basedOn < 24) {
+      this.dialog.open(WindFarmInfoDialogComponent, {
+        data: powerDataRow
+      });
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { BarChartModel } from '../../models/wind-farm.model';
 
@@ -9,6 +9,7 @@ import { BarChartModel } from '../../models/wind-farm.model';
 })
 export class BarChartComponent {
   @Input() data: BarChartModel;
+  @Output() chartClicked = new EventEmitter<string>();
 
   barChartOptions: ChartOptions = {
     responsive: true,
@@ -26,5 +27,11 @@ export class BarChartComponent {
   barChartLegend: boolean = false;
 
   constructor() {
+  }
+
+  onChartClick(event) {
+    if (event && event.active) {
+      this.chartClicked.emit(event.active);
+    }
   }
 }

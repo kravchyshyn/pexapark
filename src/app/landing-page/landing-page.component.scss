@@ -34,14 +34,19 @@
   width: 100%;
 }
 
-.mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
+.mat-row {
+  .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
 
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
+  }
+
+  &:hover {
+    .mat-cell {
+      border-color: currentColor;
+    }
+  }
 }
 
 .demo-row-is-clicked {
@@ -56,7 +61,6 @@
   background: rgb(255, 99, 132);
   color: white;
 }
-
 
 @media (max-width: 768px) {
   .landing-page {
