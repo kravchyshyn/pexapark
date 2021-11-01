@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import { WindFarmModel } from '../models/wind-farm.model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class DatabaseService {
    * @param dateRange - period of time for which data is getting
    * @param maxCapacity - max capacity of current wind power plant
    */
-  getWFData(windFarmName, dateRange: any, maxCapacity): WindFarmModel {
+  getWFData(windFarmName, dateRange: any, maxCapacity): Observable<WindFarmModel> {
     let dataStructure: WindFarmModel = {
       name: windFarmName,
       maxCapacity: maxCapacity,
@@ -42,7 +43,7 @@ export class DatabaseService {
       dayNumber++;
     }
 
-    return dataStructure;
+    return of(dataStructure);
   }
 
   /**
@@ -52,7 +53,6 @@ export class DatabaseService {
    */
   getDayPowerValues(maxCapacity = 10, count = 24): number[] {
     let response: number[] = [];
-
 
     for (let i = 0; i < count; i++) {
       const powerValue = roundTo(Math.random() * maxCapacity, 2)
