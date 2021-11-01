@@ -16,11 +16,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { CoreModule } from './core/core.module';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatInputModule } from '@angular/material/input';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -32,13 +35,13 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSlideToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatFormFieldModule,
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
     MatTableModule,
     CoreModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

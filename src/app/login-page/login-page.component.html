@@ -1,0 +1,29 @@
+<div class="login-page-bg">
+  <header class="login-page-header">
+    <img class="logo" src="../assets/images/logo.svg" />
+  </header>
+  <main class="login-page-main">
+    <form [formGroup]="loginForm" (submit)="login()">
+      <div class="login-page-form">
+        <mat-form-field appearance="fill">
+          <mat-label>Login</mat-label>
+          <input formControlName="login" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="input-wrapper">
+          <input type="submit" value="Login" class="mat-flat-button mat-button-base mat-primary" />
+        </div>
+      </div>
+
+    </form>
+
+  </main>
+</div>

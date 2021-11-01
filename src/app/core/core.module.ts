@@ -4,6 +4,7 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { WindFarmInfoDialogComponent } from './components/wind-farm-info-dialog/wind-farm-info-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [BarChartComponent, WindFarmInfoDialogComponent],
@@ -13,7 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
   imports: [
     CommonModule,
     ChartsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
   ]
 })
 export class CoreModule {
