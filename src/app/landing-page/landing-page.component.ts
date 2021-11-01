@@ -52,12 +52,6 @@ export class LandingPageComponent implements OnInit {
       return;
     }
 
-    this.db.getWFData(
-      this.windFarms[this.windForm.value.windFarmName].title,
-      this.windForm.value.dateRange,
-      this.windFarms[this.windForm.value.windFarmName].capacity
-    );
-
     this.wfStructure$ = this.db.getWFData(
       this.windFarms[this.windForm.value.windFarmName].title,
       this.windForm.value.dateRange,
