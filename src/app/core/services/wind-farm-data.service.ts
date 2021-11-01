@@ -21,14 +21,13 @@ export class WindFarmDataService {
       barChartLabels: [],
       barChartData: [{
         data: [],
-        label: '',
+        label: 'Efficiency of wind farm per day',
         backgroundColor: []
       }]
     };
 
     wfStructure.powerData.forEach(el => {
       const date: Date = new Date(el.date);
-      console.log('el.basedOn', el);
       const color: string = el.basedOn == 24 ? chartColors.blue : chartColors.red;
 
       response.barChartData[0].data.push(el.efficiency);
