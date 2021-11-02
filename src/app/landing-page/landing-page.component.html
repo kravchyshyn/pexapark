@@ -1,39 +1,46 @@
 <div class="landing-page">
-  <h2 class="landing-page__title">Welcome to Pexapark dashboard</h2>
-  <div class="landing-page__desc">
-    Please select one of your wind farms to get general information about it
+  <div class="landing-page-header">
+    <img class="logo" src="../assets/images/keycloak-logo-text.png" />
+  </div>
+  <h2 class="landing-page-title">Welcome to Pexapark dashboard</h2>
+  <div class="landing-page-desc">
+    Please choose one of your wind farms and select date range to get detailed information about it.
   </div>
 
   <form [formGroup]="windForm" (submit)="submit()">
-    <div class="landing-page__form__row">
-      <mat-form-field appearance="fill">
-        <mat-label>Wind farm</mat-label>
-        <mat-select [(value)]="selectedWF" formControlName="windFarmName">
-          <mat-option *ngFor="let windFarm of windFarms" [value]="windFarm.value">
-            {{windFarm.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Start date">
-          <input matEndDate formControlName="end" placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
+    <div class="landing-page-row">
+      <div class="landing-page-inner">
+        <mat-form-field appearance="fill">
+          <mat-label>Wind farm</mat-label>
+          <mat-select [(value)]="selectedWF" formControlName="windFarmName">
+            <mat-option *ngFor="let windFarm of windFarms" [value]="windFarm.value">
+              {{windFarm.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
 
-        <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="landing-page__form__row">
-      <div class="input-wrapper">
-        <input type="submit" value="Get" class="mat-flat-button mat-button-base mat-primary" />
+          <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
       </div>
     </div>
 
+    <div class="landing-page-row button">
+      <div class="landing-page-inner">
+        <button mat-flat-button
+                color="primary"
+                type="submit"
+        >Get data</button>
+      </div>
+    </div>
   </form>
 
   <div class="">
