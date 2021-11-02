@@ -39,8 +39,8 @@ export class LandingPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.dateRange = this.fb.group({
-      start: new FormControl([null]),
-      end: new FormControl([null]),
+      start: new FormControl(['', [Validators.required]]),
+      end: new FormControl(['', [Validators.required]]),
     });
 
     this.windForm = this.fb.group({
