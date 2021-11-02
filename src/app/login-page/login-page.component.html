@@ -7,12 +7,12 @@
       <div class="login-page-form">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input formControlName="email" matInput>
+          <input matInput formControlName="email" class="login-page-input">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+          <input matInput formControlName="password" class="login-page-input" [type]="hide ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
@@ -22,9 +22,8 @@
           <button mat-flat-button
                   color="primary"
                   type="submit"
-                  value="Login"
                   [disabled]="loginForm.invalid"
-          >Primary</button>
+          >Login</button>
         </div>
       </div>
 

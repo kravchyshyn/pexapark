@@ -23,5 +23,9 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
-  -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.01) inset !important;
+  -webkit-box-shadow: 0 0 0 30px #f4f4f4 inset !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: #f4f4f4;
 }
