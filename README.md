@@ -1,6 +1,14 @@
 # Pexapark
+This is a test app for Pexapark. App allows you to get information about efficency of certain wind farm for specific date range.
+If you want to see the landing page, you need to login to the system. Now I implemented only log in functionality (there are no posibility to register new account).
+Also a lot of features was implemented: 
+  - Table and visual view of a results
+  - If you click on each row in table or in ghaphic column it will open for you dialog window with hourly wind farm efficiency for this date (presented as a visual view)
+  - If you choose a red row and click on it, dialog window with warning (about count of values used to calculate efficency of WF) and hourly wind farm efficiency for this date will presented
+  - Added page guard, if you are not logged in you can't see dashboard and it will automaticaly redirects you for log in page
+  - Implemented a service which randomly generates data for each wind farm (can discuss the way it implemented if needed)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+Project is deployed on Heroku: https://pexapark-test.herokuapp.com/
 
 ## Development server
 
