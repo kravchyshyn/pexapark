@@ -103,6 +103,12 @@
 
 @media (max-width: 576px) {
   .landing-page {
+    &-desc {
+      width: 100%;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
     &-main {
       display: flex;
       justify-content: space-around;
@@ -127,18 +133,11 @@
     &-right {
       width: 100%;
       margin-bottom: 20px;
-    }
 
-    //&-row {
-    //  display: flex;
-    //  flex-direction: column;
-    //  align-items: center;
-    //  justify-content: center;
-    //
-    //  .mat-form-field {
-    //    padding: 10px;
-    //    min-width: 280px;
-    //  }
-    //}
+      .row {
+        font-size: 14px;
+        line-height: 2;
+      }
+    }
   }
 }
