@@ -7,9 +7,9 @@
     Please choose one of your wind farms and select date range to get detailed information about it.
   </div>
 
-  <form [formGroup]="windForm" (submit)="submit()">
-    <div class="landing-page-row">
-      <div class="landing-page-inner">
+  <div class="landing-page-main">
+    <form [formGroup]="windForm" (submit)="submit()">
+      <div class="landing-page-left">
         <mat-form-field appearance="fill">
           <mat-label>Wind farm</mat-label>
           <mat-select [(value)]="selectedWF" formControlName="windFarmName">
@@ -30,62 +30,62 @@
           <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
           <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
         </mat-form-field>
+        <div class="mat-form-button">
+          <button mat-flat-button
+                  color="primary"
+                  type="submit"
+          >Get data</button>
+        </div>
       </div>
+    </form>
+    <div class="landing-page-right">
+      <div class="row"><b>Name of WF:</b> {{windFarms[selectedWF].title}} </div>
+      <div class="row"><b>Max capacity of Wind Farm:</b> {{windFarms[selectedWF].capacity}}</div>
+      <div class="row"><b>Number of wind turbines: </b> {{windFarms[selectedWF].wtNumber}}</div>
     </div>
-
-    <div class="landing-page-row button">
-      <div class="landing-page-inner">
-        <button mat-flat-button
-                color="primary"
-                type="submit"
-        >Get data</button>
-      </div>
-    </div>
-  </form>
-
-  <div class="">
-    <ng-container *ngIf="windForm && windFarm?.powerData">
-      <mat-tab-group>
-        <mat-tab label="Table view">
-          <table mat-table [dataSource]="windFarm.powerData" class="mat-elevation-z8 demo-table">
-            <ng-container matColumnDef="position">
-              <th class="table-header" mat-header-cell *matHeaderCellDef>No.</th>
-              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="date">
-              <th class="table-header" mat-header-cell *matHeaderCellDef>Date</th>
-              <td mat-cell *matCellDef="let element">{{element.date | date:'shortDate'}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="averagePower">
-              <th class="table-header" mat-header-cell *matHeaderCellDef>Average Power</th>
-              <td mat-cell *matCellDef="let element">{{element.averagePower}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="efficiency">
-              <th class="table-header" mat-header-cell *matHeaderCellDef>Efficiency</th>
-              <td mat-cell *matCellDef="let element">{{element.efficiency}}</td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr
-              mat-row
-              *matRowDef="let row; columns: displayedColumns;"
-              [ngClass]="{ 'warning': (row.basedOn < 24) }"
-              (click)="onTableRowClick(row)"
-            ></tr>
-          </table>
-        </mat-tab>
-        <mat-tab label="Visual view">
-          <app-bar-chart
-            [data]="chartData"
-            (chartClicked)="onClickOnChartRow($event)"
-          >
-          </app-bar-chart>
-        </mat-tab>
-      </mat-tab-group>
-
-    </ng-container>
   </div>
+
+  <ng-container *ngIf="windForm && windFarm?.powerData">
+    <mat-tab-group>
+      <mat-tab label="Table view">
+        <table mat-table [dataSource]="windFarm.powerData" class="mat-elevation-z8 demo-table">
+          <ng-container matColumnDef="position">
+            <th class="table-header" mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th class="table-header" mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let element">{{element.date | date:'shortDate'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="averagePower">
+            <th class="table-header" mat-header-cell *matHeaderCellDef>Average Power</th>
+            <td mat-cell *matCellDef="let element">{{element.averagePower}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="efficiency">
+            <th class="table-header" mat-header-cell *matHeaderCellDef>Efficiency</th>
+            <td mat-cell *matCellDef="let element">{{element.efficiency}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns;"
+            [ngClass]="{ 'warning': (row.basedOn < 24) }"
+            (click)="onTableRowClick(row)"
+          ></tr>
+        </table>
+      </mat-tab>
+      <mat-tab label="Visual view">
+        <app-bar-chart
+          [data]="chartData"
+          (chartClicked)="onClickOnChartRow($event)"
+        >
+        </app-bar-chart>
+      </mat-tab>
+    </mat-tab-group>
+
+  </ng-container>
 </div>

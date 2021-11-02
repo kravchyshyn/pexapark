@@ -5,6 +5,7 @@ export interface WindFarmSelectorModel {
   value: number;
   title: string;
   capacity: number;
+  wtNumber: number;
 }
 
 export interface WindFarmModel {

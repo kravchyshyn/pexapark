@@ -19,10 +19,10 @@ export class LandingPageComponent implements OnInit {
   selectedWF: number = 0;
 
   windFarms: WindFarmSelectorModel[] = [
-    {value: 0, title: 'WF-1', capacity: 10},
-    {value: 1, title: 'WF-2', capacity: 17},
-    {value: 2, title: 'WF-3', capacity: 22},
-    {value: 2, title: 'WF-4', capacity: 15},
+    {value: 0, title: 'Wind Farm 1', capacity: 10, wtNumber: 10},
+    {value: 1, title: 'Wind Farm 2', capacity: 17, wtNumber: 12},
+    {value: 2, title: 'Wind Farm 3', capacity: 22, wtNumber: 15},
+    {value: 2, title: 'Wind Farm 4', capacity: 15, wtNumber: 10},
   ];
 
   displayedColumns: string[] = ['position', 'date', 'averagePower', 'efficiency'];
