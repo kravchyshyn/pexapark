@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { WindFarmInfoDialogComponent } from './components/wind-farm-info-dialog/wind-farm-info-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [BarChartComponent, WindFarmInfoDialogComponent],
@@ -14,8 +15,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ChartsModule,
-    MatDialogModule,
     ReactiveFormsModule,
+    SharedModule,
+    MatDialogModule
   ]
 })
 export class CoreModule {

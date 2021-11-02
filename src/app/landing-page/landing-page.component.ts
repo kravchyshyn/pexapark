@@ -75,7 +75,19 @@ export class LandingPageComponent implements OnInit {
 
       if (wfPowerData.basedOn < 24) {
         this.dialog.open(WindFarmInfoDialogComponent, {
-          data: wfPowerData
+          data: {
+            wf: wfPowerData,
+            headerText: 'Warning',
+            mainText: `For this day there are no full data. Wind farm efficiency calculated based on ${wfPowerData.basedOn} of 24 values`
+          }
+        });
+      } else {
+        this.dialog.open(WindFarmInfoDialogComponent, {
+          data: {
+            wf: wfPowerData,
+            headerText: 'Info',
+            mainText: `Hourly Wind farm efficiency. Depends on wind speed, max power capacity and current wind farm power`
+          }
         });
       }
     }
@@ -84,7 +96,19 @@ export class LandingPageComponent implements OnInit {
   onTableRowClick(powerDataRow): void {
     if (powerDataRow.basedOn < 24) {
       this.dialog.open(WindFarmInfoDialogComponent, {
-        data: powerDataRow
+        data: {
+          wf: powerDataRow,
+          headerText: 'Warning',
+          mainText: `For this day there are no full data. Wind farm efficiency calculated based on ${powerDataRow.basedOn} of 24 values`
+        }
+      });
+    } else {
+      this.dialog.open(WindFarmInfoDialogComponent, {
+        data: {
+          wf: powerDataRow,
+          headerText: 'Info',
+          mainText: `Hourly Wind farm efficiency. Depends on wind speed, max power capacity and current wind farm power`
+        }
       });
     }
   }

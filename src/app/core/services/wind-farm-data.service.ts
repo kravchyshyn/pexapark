@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BarChartModel, WindFarmModel } from '../models/wind-farm.model';
+import { BarChartModel, PowerDataModel, WindFarmModel } from '../models/wind-farm.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class WindFarmDataService {
       blue: 'rgb(54, 162, 235)'
     };
 
-    let response: BarChartModel = {
+    const response: BarChartModel = {
       barChartLabels: [],
       barChartData: [{
         data: [],
-        label: 'Efficiency of wind farm per day',
+        label: 'Daily wind farm efficiency for specific data range',
         backgroundColor: []
       }]
     };
@@ -33,6 +33,29 @@ export class WindFarmDataService {
       response.barChartData[0].data.push(el.efficiency);
       (response.barChartData[0].backgroundColor as Array<string>).push(color);
       response.barChartLabels.push(date.toISOString().slice(0, 10));
+    })
+
+    return response;
+  }
+
+  /**
+   * Prepare hourly data for bar chart for a specific date
+   * @param data - all data for specific wind farm used for specific date
+   */
+  getChartForSpecificDate(data: PowerDataModel): BarChartModel {
+    const response: BarChartModel = {
+      barChartLabels: [],
+      barChartData: [{
+        data: [],
+        label: 'Hourly wind farm efficiency for specific date',
+        backgroundColor: []
+      }]
+    };
+
+    data.powerValues.forEach((el, index) => {
+      response.barChartData[0].data.push(el / data.maxPower);
+      (response.barChartData[0].backgroundColor as Array<string>).push('rgb(54, 162, 235)');
+      response.barChartLabels.push(index.toString());
     })
 
     return response;

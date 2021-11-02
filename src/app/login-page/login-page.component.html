@@ -19,7 +19,13 @@
         </mat-form-field>
 
         <div class="input-wrapper">
-          <input type="submit" value="Login" class="mat-flat-button mat-button-base mat-primary" />
+          <button
+            type="submit"
+            value="Login"
+            class="mat-flat-button mat-button-base mat-primary"
+            [disabled]="loginForm.invalid"
+          >
+          </button>
         </div>
       </div>
 

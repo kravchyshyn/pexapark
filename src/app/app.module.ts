@@ -5,19 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatTableModule } from '@angular/material/table';
-import { CoreModule } from './core/core.module';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatInputModule } from '@angular/material/input';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -29,19 +20,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatChipsModule,
-    MatIconModule,
-    MatDatepickerModule,
-    ReactiveFormsModule,
-    MatNativeDateModule,
-    MatTableModule,
-    CoreModule,
-    MatTabsModule,
-    MatInputModule
+    SharedModule,
+    CoreModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

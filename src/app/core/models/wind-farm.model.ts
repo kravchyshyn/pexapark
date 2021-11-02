@@ -17,13 +17,20 @@ export interface WindFarmModel {
 
 export interface PowerDataModel {
   averagePower: number;
+  maxPower: number;
   basedOn: number;
   date: Date;
   efficiency: number;
-  powerValues: number[]
+  powerValues: number[];
 }
 
 export interface BarChartModel {
   barChartLabels: Label[];
   barChartData: ChartDataSets[];
+}
+
+export interface WFPopupModel {
+  wf: PowerDataModel;
+  headerText: string;
+  mainText: string;
 }

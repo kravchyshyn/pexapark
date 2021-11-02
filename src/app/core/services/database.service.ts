@@ -36,7 +36,7 @@ export class DatabaseService {
       const averagePower: number = roundTo(totalPower / basedOn, 2)
       const efficiency: number = roundTo(totalPower / (basedOn * maxCapacity), 2);
 
-      dataStructure.powerData.push({date, averagePower, basedOn, efficiency, powerValues})
+      dataStructure.powerData.push({date, averagePower, basedOn, efficiency, powerValues, maxPower: maxCapacity})
 
       let newDate = date.setDate(date.getDate() + 1);
       date = new Date(newDate);

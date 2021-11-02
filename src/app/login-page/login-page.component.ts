@@ -18,13 +18,17 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      login: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      login: [null, [Validators.required]],
+      password: [null, [Validators.required]]
     });
 
   }
 
-  login() {
+  login(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.router.navigateByUrl('/landing-page');
   }
 }
