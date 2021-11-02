@@ -12,8 +12,8 @@ import { UserModel } from '../core/models/auth.model';
 export class LoginPageComponent implements OnInit {
   public loginForm: FormGroup;
   public hide = true;
-  public submitted = false
-  public message: string
+  public submitted = false;
+  public message: string;
 
   constructor(
     private fb: FormBuilder,
@@ -56,7 +56,8 @@ export class LoginPageComponent implements OnInit {
       this.loginForm.reset()
       this.router.navigateByUrl('/landing-page');
       this.submitted = false;
-    }, () => {
+    }, (error) => {
+      this.message = error.error.error.message;
       this.submitted = false;
     });
   }

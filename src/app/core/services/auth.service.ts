@@ -22,7 +22,7 @@ export class AuthService {
     return localStorage.getItem('fb-token');
   }
 
-  login(user: UserModel): Observable<any> {
+  login(user: UserModel): Observable<AuthModel | HttpErrorResponse> {
     user.returnSecureToken = true;
     return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
