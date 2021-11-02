@@ -9,6 +9,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    MatButtonModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

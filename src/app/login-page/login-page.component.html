@@ -12,19 +12,19 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>
-          <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
 
         <div class="input-wrapper">
-          <input
-            type="submit"
-            value="Login"
-            class="btn  mat-button-base mat-primary"
-            [disabled]="loginForm.invalid"
-          />
+          <button mat-flat-button
+                  color="primary"
+                  type="submit"
+                  value="Login"
+                  [disabled]="loginForm.invalid"
+          >Primary</button>
         </div>
       </div>
 
