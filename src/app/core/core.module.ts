@@ -6,6 +6,7 @@ import { WindFarmInfoDialogComponent } from './components/wind-farm-info-dialog/
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [BarChartComponent, WindFarmInfoDialogComponent],

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -12,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../core/services/auth.service';
+import { AuthGuard } from '../core/services/auth.guard';
 
 @NgModule({
   declarations: [],
@@ -44,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTabsModule,
     MatInputModule,
     HttpClientModule
-  ]
+  ],
+  providers: [AuthService, AuthGuard]
 })
 export class SharedModule { }
